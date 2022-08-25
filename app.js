@@ -1,38 +1,53 @@
-const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 const logger = require('morgan');
-var exphbs = require('express-handlebars');
-
-
+const exphbs = require("express-handlebars")
 const { rootRouter } = require("./routes");
-
 
 const app = express();
 
-// init handlebars - template engine
-app.engine('hbs', exphbs({ extname: ".hbs" }));
-app.set('view engine', 'hbs');
-// view engine setup
-app.set('views', path.join(__dirname, '/resources/views'));
+// setup exhbs template engine
+app.engine('.hbs', exphbs({
+  extname: '.hbs',
+  layoutsDir: path.join(__dirname, 'resources/views/mainLayouts'),
+  partialsDir: path.join(__dirname, 'resources/views/mainPartials'),
+
+  // create custom helpers func
+  helpers: {
+    sum: (a, b) => a + b
+  }
+}));
+app.set('view engine', '.hbs');
+app.set('views', path.join(__dirname, 'resources/views/'))
 
 // HTTP logger
-app.use(logger('combined')); // sửa dev -> combined
+app.use(logger('dev')); // sửa dev -> combined
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(methodOverride('_method'))
 
+// set static path
 app.use("/public", express.static(path.join(__dirname, './public')));
+app.use("/vendor", express.static(path.join(__dirname, './node_modules')));
 
+// user Ruoter
 app.use('/', rootRouter);
 
-app.use(function (req, res) {
-    res.status(404).render('errors/404.hbs');
-});
-app.use(function (req, res) {
-    res.status(503).render('errors/503.hbs');
+
+// error handler
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('errors/error');
 });
 
 module.exports = app;

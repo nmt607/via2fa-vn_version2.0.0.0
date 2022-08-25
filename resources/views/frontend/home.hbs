@@ -1,0 +1,32 @@
+<h1>
+    Welcome to {{title}}
+    <hr>
+    <p>each with array</p>
+    <ul>
+        {{#each array as |value key|}}
+        <li>{{key}}:{{value}}</li>
+        {{/each}}
+    </ul>
+    <hr>
+    <p>each with object</p>
+    <div>
+        {{#each user as |value key|}}
+        <span class="me-3">{{key}}:{{value}}</span>
+        {{/each}}
+    </div>
+    <hr>
+
+    <div>
+        <p>lookup - get detail value by key</p>
+        {{lookup user "name"}}
+        {{lookup array 0}}
+    </div>
+    <hr>
+
+    <div>
+        <p>custom helpers func</p>
+        <div>
+            {{sum 1 23}}
+        </div>
+    </div>
+</h1>

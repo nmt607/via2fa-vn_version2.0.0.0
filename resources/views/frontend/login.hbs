@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/public/css/frontend/main.css">
+</head>
+
+<body>
+    <div class="app register">
+        <div class="container register--contaier">
+            <div class="register--wrapper">
+                <div class="register--form">
+                    <h1 class="mb-5">{{title}}</h1>
+                    <div class="alert alert-danger error-message" role="alert">
+                        Tài khoản hoặc mật mã không đúng
+                    </div>
+                    <div class="alert alert-success success-message" role="alert">
+                        Đăng nhập thành công
+                    </div>
+                    <form action="#" method="POST" class="form-register" id="loginForm">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="Nhập tài khoản"
+                                name="username">
+                            <label for="floatingInput">Nhập tài khoản</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Nhập mật mã"
+                                name="password">
+                            <label for="floatingPassword">Nhập mật mã</label>
+                        </div>
+                        <button class="btn btn-primary btn-lg" type="submit">{{title}}</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/vendor/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    {{{script}}}
+</body>
+
+</html>

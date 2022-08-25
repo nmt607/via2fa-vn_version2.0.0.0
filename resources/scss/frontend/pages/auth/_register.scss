@@ -1,0 +1,17 @@
+.register {
+    &--wrapper {
+        display: flex;
+        height: 100vh;
+    }
+    &--form {
+        margin: auto;
+        max-width: 560px;
+        width: 560px;
+        .error-message {
+            display: none;
+        }
+        .success-message {
+            display: none;
+        }
+    }
+}

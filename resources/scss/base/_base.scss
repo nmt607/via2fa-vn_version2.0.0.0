@@ -1,0 +1,78 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 15px;
+    box-sizing: border-box;
+    scroll-behavior: unset !important;
+}
+
+body {
+    font-family: "Nunito", sans-serif;
+    color: $color-text-primary;
+    background-color: $color-background-default;
+    font-weight: $font-weight-default;
+    line-height: $lh-default;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+// TAG
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    outline: none;
+    border: none;
+}
+input:focus {
+    border-color: $color-border-input;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    overflow-wrap: break-word;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    list-style: none;
+    display: inline-block;
+}
+
+a {
+    text-decoration: none;
+}
+
+//CLASS
+// RESET BOOTSTRAP
+.form-control:focus,
+.btn:focus,
+.btn:active:focus {
+    box-shadow: none;
+}
+
+

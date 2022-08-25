@@ -1,15 +1,18 @@
 const express = require('express');
-const { userRouter } = require("./user.ruoters")
+const { homeRuoter } = require("./frontend/home.fe.routers")
+const { registerRuoter } = require("./frontend/register.fe.routers")
+const { loginRouter } = require("./frontend/login.fe.routers")
+
 const rootRouter = express.Router();
 
 
-// API Router
-rootRouter.use("/user", userRouter);
+// frontend ruotes
+rootRouter.use('/', homeRuoter)
+rootRouter.use('/register', registerRuoter)
+rootRouter.use('/login', loginRouter)
 
-/* GET home page. */
-rootRouter.get('/', function (req, res, next) {
-  res.render('pages/home', { title: 'via2fa.vn' });
-});
+
+
 
 module.exports = {
   rootRouter
