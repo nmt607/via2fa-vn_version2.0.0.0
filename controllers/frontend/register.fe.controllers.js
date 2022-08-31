@@ -29,13 +29,13 @@ const register = async (req, res) => {
 
 const registerPage = (req, res) => {
     const title = "Đăng Kí"
-    res.render('frontend/register',
+    res.render('frontend/register.fe.ejs',
         {
+            layout: false,
             title,
             script:
                 `<script src='/vendor/axios/dist/axios.min.js'></script> 
-<script src='/public/js/frontend/pages/register.js'></script>`,
-            layout: false
+<script src='/public/js/frontend/pages/register.fe.js'></script>`,
         }
     );
 }

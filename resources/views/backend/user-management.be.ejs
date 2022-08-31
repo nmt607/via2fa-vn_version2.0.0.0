@@ -1,0 +1,177 @@
+<div class="app user-management">
+    <h1 class="text-center mb-4">Quản lý người dùng</h1>
+    <div class="user-management-option d-flex align-items-center mb-3">
+        <div class="form-select-pagesize d-flex align-items-center ">
+            <span class="me-1">Show</span>
+            <select class="form-select form-select-sm" aria-label="Default select example">
+                <option selected>25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+            <span class="ms-1"> entries</span>
+        </div>
+
+        <form class="d-flex form-search ms-auto">
+            <div class="input-group">
+                <input type="text" class="form-control" name="data">
+                <select class="form-select" name="field">
+                    <option value="null" selected disabled>Chọn Dữ Liệu</option>
+                    <option value="username">Username</option>
+                    <option value="email">Email</option>
+                    <option value="phone">Phone</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Create at</th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+        <tbody class="userList-tbody">
+            <% for(let i=0;i < userList.length;i++){%>
+                <tr>
+                    <td scope="row">
+                        <%= i+1 %>
+                    </td>
+                    <td>
+                        <%= userList[i].username %>
+                    </td>
+                    <td>
+                        <%= userList[i].email %>
+                    </td>
+                    <td>
+                        <%= userList[i].phone %>
+                    </td>
+                    <td>
+                        <%= userList[i].amount.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1," ) %> VNĐ
+                    </td>
+                    <td>
+                        <%= dateFormat('dd-MM-yyyy', new Date(userList[i].createdAt))%>
+                    </td>
+
+                    <td>
+                        <button class="btn btn-primary btn-modal-edit" data-bs-toggle="modal"
+                            data-bs-target="#modalUserEdit" data-id="<%=userList[i].id%>" data-method="POST"
+                            data-action="/admin/api/get-user-by-id">Sửa</button>
+                        <button class=" btn btn-danger btn-modal-delete" data-bs-toggle="modal" data-method="POST"
+                            data-action="/admin/api/get-user-by-id" data-id="<%=userList[i].id%>"
+                            data-bs-target="#modalUserDelete">Xóa</button>
+                    </td>
+                </tr>
+                <%}%>
+        </tbody>
+    </table>
+    <!-- pagination -->
+    <%- include('../mainPartials/components/pagination.ejs') %>
+
+        <!-- {{!-- modal --}} -->
+        <!-- Modal Edit User-->
+        <div class="modal fade" id="modalUserEdit" tabindex="-1" aria-labelledby="modalLabelEditUser"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title model-title-edit-user" id="modalLabelEditUser">Sửa thông tin - nmt607
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="PUT" action="/admin/api/edit-user" id="modalFormEditUser" name="editUserForm">
+                            <div class="alert alert-danger message-error-edit-user mb-3" role="alert">
+                                <p>Phát sinh lỗi ngoại lệ</p>
+                            </div>
+                            <div class="alert alert-success message-success-edit-user mb-3" role="alert">
+                                <p>Chỉnh sửa thông tin thành công</p>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="staticUsername" class="col-sm-3 col-form-label">Username</label>
+                                <div class="col-sm-9">
+                                    <input type="text" readonly class="form-control-plaintext" id="staticUsername"
+                                        value="via2fa_UserName" name="username">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="staticEmail" class="col-sm-3 col-form-label">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control" id="staticEmail" value="email@example.com"
+                                        name="email">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="inputPassword" value="" name="password">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputPhone" class="col-sm-3 col-form-label">Phone</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="inputPhone" value="0705542890"
+                                        minlength="10" maxlength="12" name="phone">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputCurrentAmount" class="col-sm-3 col-form-label">Current
+                                    Amuont</label>
+                                <div class="col-sm-9">
+                                    <input type="number" class="form-control" id="inputCurrentAmount" value="25000"
+                                        min="0" step="0.01" max=" 99999999999" name="currentAmuont">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputAddAmount" class="col-sm-3 col-form-label">Add Amuont</label>
+                                <div class="col-sm-9">
+                                    <input type="number" class="form-control" id="inputAddAmount" step="0.001" value="0"
+                                        max="99999999999" name="addAmount">
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Lưu thay đổi</button>
+                    </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Delete User -->
+        <!-- Modal -->
+        <div class="modal fade" id="modalUserDelete" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Xoá người dùng</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="alert alert-danger message-error-delete-user mb-3" role="alert">
+                            <p>Phát sinh lỗi ngoại lệ</p>
+                        </div>
+                        <div class="alert alert-success message-success-delete-user mb-3" role="alert">
+                            <p>Xoá thành công - người dùng </p>
+                        </div>
+                        <h4 class="modal-body-delete-content">Bấm xác nhận để xóa nmt607</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger execute-delete" data-method="DELETE"
+                            data-action="/admin/api/soft-delete-user">Xác nhận</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

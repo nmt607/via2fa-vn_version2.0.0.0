@@ -1,5 +1,5 @@
 const checkLen = (fieldName, asName, array) => (req, res, next) => {
-    const value = req.body[fieldName]
+    const value = req.body[fieldName]  
     const max = array[1] || 1000
     if (value.length >= array[0] && value.length <= max) {
         next()

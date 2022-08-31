@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
+    <title>
+        <%=title%>
+    </title>
     <link rel="stylesheet" href="/public/css/frontend/main.css">
 </head>
 
@@ -14,14 +16,16 @@
         <div class="container register--contaier">
             <div class="register--wrapper">
                 <div class="register--form">
-                    <h1 class="mb-4 form-title">{{title}}</h1>
+                    <h1 class="mb-4 form-title">
+                        <%=title%>
+                    </h1>
                     <div class="alert alert-danger error-message" role="alert">
                         Định dạng email không hợp lệ
                     </div>
                     <div class="alert alert-success success-message" role="alert">
                         Đăng kí thành công
                     </div>
-                    <form action="#" method="POST" class=" form-register" id="registerForm">
+                    <form action="/api/register" method="POST" class=" form-register" id="registerForm">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="floatingUsername" placeholder="Nhập tài khoản"
                                 name="username">
@@ -47,7 +51,9 @@
                                 name="phone">
                             <label for="floatingPassword">Nhập SĐT</label>
                         </div>
-                        <button class="btn btn-primary btn-lg" type="submit">{{title}}</button>
+                        <button class="btn btn-primary btn-lg" type="submit">
+                            <%=title%>
+                        </button>
                     </form>
                 </div>
 
@@ -58,7 +64,7 @@
     <script src="/vendor/jquery/dist/jquery.min.js"></script>
     <script src="/vendor/@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-    {{{script}}}
+    <%-script%>
 </body>
 
 </html>

@@ -1,24 +1,25 @@
 const express = require('express');
 
 // controllers
-const { loginPage, login } = require('../../controllers/frontend/login.fe.controllers');
+const { loginPage, login } = require('../../controllers/backend/login.be.controllers');
 
 // middlewares
 const { checkEmpty } = require('../../middlewares/validation/checkEmpty');
 
-const loginFeRouter = express.Router();
+const loginBeRouter = express.Router();
 
 // Get Page
-loginFeRouter.get("/login", loginPage)
+loginBeRouter.get("/login", loginPage)
+
 
 
 // API
-loginFeRouter.post("/api/login",
+loginBeRouter.post("/api/login",
     checkEmpty("username", "Tài khoản"),
     checkEmpty("password", "Mật khẩu"),
     login
 )
 
 module.exports = {
-    loginFeRouter
+    loginBeRouter
 };

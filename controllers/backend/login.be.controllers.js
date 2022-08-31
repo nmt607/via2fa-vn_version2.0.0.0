@@ -8,25 +8,26 @@ const { fomatString } = require("../../utils/fomatString");
 const login = async (req, res) => {
     const { username, password } = req.body
     const usernameFomatString = fomatString(username)
-
+    const roleArray = process.env.ROLEADMIN.split(',')
     try {
         const userFound = await User.findOne({
             where: {
                 username: usernameFomatString,
+                role: roleArray
             }
         })
         if (userFound) {
             const isAuth = bcrypt.compareSync(password, userFound.password)
             if (isAuth) {
                 const token = jwt.sign({ id: userFound.id }, "manhtien345", {
-                    expiresIn: 5 * 60
+                    expiresIn: 60 * 60
                 })
                 res.status(200).send({ message: "Đăng nhập thành công", token })
             } else {
-                res.status(401).send({ message: "Tài khoản hoặc mật khẩu không đúng" })
+                res.status(403).send({ message: "Tài khoản hoặc mật khẩu không đúng" })
             }
         } else {
-            res.status(404).send({ message: "Tài khoản hoặc mật khẩu không đúng" })
+            res.status(403).send({ message: "Tài khoản hoặc mật khẩu không đúng" })
         }
     } catch (error) {
         res.status(500).send({ message: "Lỗi ngoại lệ", error })
@@ -35,12 +36,12 @@ const login = async (req, res) => {
 
 
 const loginPage = (req, res) => {
-    res.render('frontend/login.fe.ejs',
+    res.render('backend/login.be.ejs',
         {
             layout: false,
-            title: 'Đăng Nhập',
+            title: 'Đăng Nhập - Adminitrator',
             script: `<script src="/vendor/axios/dist/axios.min.js"></script>
-<script src='/public/js/frontend/pages/login.fe.js'></script>`,
+<script src='/public/js/backend/pages/login.be.js'></script>`,
         }
     );
 }

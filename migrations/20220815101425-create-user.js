@@ -25,6 +25,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      amount: {
+        type: Sequelize.DECIMAL(13, 2),
+        allowNull: false,
+        defaultValue: 0
+      },
       avatar: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -33,6 +38,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
         defaultValue: "client"
+      },
+      deletedAt: {
+        allowNull: true,
+        type: Sequelize.DATE,        
       },
       createdAt: {
         allowNull: false,

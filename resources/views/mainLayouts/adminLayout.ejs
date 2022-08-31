@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%=title%>
+  </title>
+
+  <link rel="stylesheet" href="/public/css/backend/main.css">
+</head>
+
+<body>
+  <%- include ("../mainPartials/backend/header.be.ejs")%>
+
+    <div class="app">
+
+      <div class="container">
+        <%-body%>
+      </div>
+
+    </div>
+
+    <%- include ("../mainPartials/backend/footer.be.ejs")%>
+
+      <script src="/vendor/jquery/dist/jquery.min.js"></script>
+      <script src="/vendor/@popperjs/core/dist/umd/popper.min.js"></script>
+      <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+      <%-script%>
+</body>
+
+</html>

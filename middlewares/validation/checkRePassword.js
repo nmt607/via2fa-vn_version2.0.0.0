@@ -1,4 +1,4 @@
-const passwordRecheck = (req, res, next) => {
+const checkRePassword = (req, res, next) => {
     const { password, passwordReCheck } = req.body
     if (password === passwordReCheck) {
         next()
@@ -8,5 +8,5 @@ const passwordRecheck = (req, res, next) => {
 }
 
 module.exports = {
-    passwordRecheck
+    checkRePassword
 }

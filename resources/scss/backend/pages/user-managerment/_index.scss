@@ -1,0 +1,35 @@
+.user-management {
+    .form-search {
+        .input-group {
+            width: 415px;
+            max-width: 415px;
+            margin-left: auto;
+            .form-select {
+                flex-grow: 2;
+            }
+            .form-control {
+                flex-grow: 5;
+            }
+        }
+    }
+    #modalUserEdit {
+        .modal-body {
+            & > div {
+                align-items: center;
+                label {
+                    text-align: left;
+                }
+            }
+            .message-success-edit-user,
+            .message-error-edit-user {
+                display: none;
+            }
+        }
+    }
+    #modalUserDelete {
+        .message-success-delete-user,
+        .message-error-delete-user {
+            display: none;
+        }
+    }
+}

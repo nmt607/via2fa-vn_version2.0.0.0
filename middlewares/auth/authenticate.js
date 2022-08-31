@@ -1,8 +1,9 @@
 const jwt = require("jsonwebtoken")
 
-const authenticate = (req, res, next) => {
+const authenticateFe = (req, res, next) => {
     const { token } = req.cookies
     try {
+
         const decode = jwt.verify(token, 'manhtien345')
         if (decode) {
             req.id = decode.id
@@ -10,11 +11,31 @@ const authenticate = (req, res, next) => {
         } else {
             res.redirect('/login')
         }
+
+
     } catch (error) {
         res.redirect('/login')
     }
 }
 
+const authenticateBe = (req, res, next) => {
+    const { token } = req.cookies
+    try {
+
+        const decode = jwt.verify(token, 'manhtien345')
+        if (decode) {
+            req.id = decode.id
+            next()
+        } else {
+            res.redirect('/admin/login')
+        }
+
+
+    } catch (error) {
+
+        res.redirect('/admin/login')
+    }
+}
 module.exports = {
-    authenticate
+    authenticateFe, authenticateBe
 }

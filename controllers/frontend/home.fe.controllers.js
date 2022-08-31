@@ -2,7 +2,7 @@
 const homePage = (req, res) => {
     // loigic code
 
-    res.render('frontend/home',
+    res.render('frontend/home.fe.ejs',
         {
             title: 'via2fa.vn',
             array: [
@@ -15,9 +15,9 @@ const homePage = (req, res) => {
                 name: "Nguyễn Mạnh Tiến",
                 age: "31",
                 gender: "Nam"
-            }
+            },
+            script: `<script src='/public/js/frontend/pages/home.fe.js'></script>`
         }
-
     )
 }
 

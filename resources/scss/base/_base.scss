@@ -67,12 +67,21 @@ a {
     text-decoration: none;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
 //CLASS
 // RESET BOOTSTRAP
 .form-control:focus,
 .btn:focus,
-.btn:active:focus {
+.btn:active:focus,select.form-select:focus {
     box-shadow: none;
 }
-
-

@@ -12,21 +12,21 @@ const { checkExistReject } = require('../../middlewares/validation/checkExistRej
 const { checkEmpty } = require('../../middlewares/validation/checkEmpty');
 const { checkIsEmail } = require('../../middlewares/validation/checkIsEmail');
 const { checkIsPhone } = require('../../middlewares/validation/checkIsPhone');
-const { passwordRecheck } = require('../../middlewares/validation/passwordRecheck');
+const { checkRePassword } = require('../../middlewares/validation/checkRePassword');
 
-const registerRuoter = express.Router();
+const registerFeRuoter = express.Router();
 
 // Get Page
-registerRuoter.get("/", registerPage)
+registerFeRuoter.get("/register", registerPage)
 
 // API
-registerRuoter.post("/",
+registerFeRuoter.post("/api/register",
     checkEmpty("username", "Tài khoản"),
     checkLen('username', 'Tài khoản', [4, 18]),
     checkExistReject(User, "username", "Tài khoản"),
     checkEmpty("password", "Mật khẩu"),
     checkLen('password', 'Mật khẩu', [4, 18]),
-    passwordRecheck,
+    checkRePassword,
     checkEmpty("email", "Email"),
     checkIsEmail(),
     checkEmpty("phone", "Số điện thoại"),
@@ -36,5 +36,5 @@ registerRuoter.post("/",
 
 
 module.exports = {
-    registerRuoter
+    registerFeRuoter
 };

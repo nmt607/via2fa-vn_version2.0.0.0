@@ -1,13 +1,13 @@
 const express = require('express')
 // middlwares
-const { authenticate } = require('../../middlewares/auth/authenticate');
+const { authenticateFe } = require('../../middlewares/auth/authenticate');
 // controllers
 const { homePage } = require('../../controllers/frontend/home.fe.controllers');
-const homeRuoter = express.Router()
+const homeFeRuoter = express.Router()
 
 // home page
-homeRuoter.get("/", authenticate, homePage)
+homeFeRuoter.get("/", authenticateFe, homePage)
 
 module.exports = {
-    homeRuoter
+    homeFeRuoter
 }
