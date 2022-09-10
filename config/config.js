@@ -3,9 +3,13 @@ module.exports = {
   "development": {
     "username": "root",
     "password": process.env.PASSWORDSQL,
-    "database": "userlogin_db",
+    "database": "via2fa.vn_db",
     "host": "127.0.0.1",
     "dialect": "mysql",
+    "dialectOptions": {
+      "useUTC": false
+    },
+    "timezone": "+07:00",
     "logging": false
   },
   "test": {

@@ -1,0 +1,44 @@
+//------DIMENSION------
+$scrollbar-width: 8px;
+// HEIGHT
+$header-height: 90px;
+// LINE-HEIGHT
+$lh-default: 1.5;
+
+// COLOR
+$color-background-default: #fff;
+$color-background-secondary: #f4f4f4;
+$color-text-primary: rgb(0, 0, 0);
+$color-text-secondary: #666;
+$color-primary: #c02f2e;
+$color-secondary: #e93737;
+$color-ternary: #9c2626;
+
+//FONT-WEIGHT
+$font-weight-super-bold: 900;
+$font-weight-bold: 700;
+$font-weight-semi-bold: 600;
+$font-weight-default: 400;
+$font-weight-light: 300;
+
+// BORDER-RADIUS
+$border-radius-default: 6px;
+$border-radius-1: 10px;
+$border-radius-2: 16px;
+$border-radius-3: 20px;
+
+//BORDER-COLOR
+$border-color-gray: #eee;
+$color-border-input: #ddd;
+
+
+// SHADOW
+$box-shadow-section: 0 4px 6px #00000029;
+$box-shadow-emlement: 0 4px 6px #ccc;
+$box-shadow-filter-show: 0 2px 20px rgb(0 0 0 / 50%);
+$box-shadow-emlement--hover: 0 0px 12px 12px rgb(0 0 0 / 12%);
+$box-shadow-special-product-card: 0 4px 6px #000000;
+$box-shadow-arrow-up:-2px -2px 5px -4px;
+
+// MARGIN OFFSET
+$margin-offset: 14%;

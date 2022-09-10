@@ -248,7 +248,43 @@ module.exports = {
         updatedAt: '2022-08-14 19:32:31'
       },
       {
-        username: 'nmt634',
+        username: 'nmt6341',
+        password: '$2a$10$hWI2dPFxJMWEezygU/Nt0.1CdCvoy/VoSXhyaNWWL176gOzYTKoeO',
+        email: 'nmt605@gmail.com',
+        phone: '0705542897',
+        amount: 5653556,
+        avatar: 'https://gravatar.com/avatar/01af23da56ae32f88cd54bf48294627e',
+        role: 'client',
+        deletedAt: null,
+        createdAt: '2022-09-12 19:32:33',
+        updatedAt: '2022-08-14 19:32:31'
+      },
+      {
+        username: 'nmt6342',
+        password: '$2a$10$hWI2dPFxJMWEezygU/Nt0.1CdCvoy/VoSXhyaNWWL176gOzYTKoeO',
+        email: 'nmt605@gmail.com',
+        phone: '0705542897',
+        amount: 5653556,
+        avatar: 'https://gravatar.com/avatar/01af23da56ae32f88cd54bf48294627e',
+        role: 'client',
+        deletedAt: null,
+        createdAt: '2022-09-12 17:32:31',
+        updatedAt: '2022-08-14 19:32:31'
+      },
+      {
+        username: 'nmt6334',
+        password: '$2a$10$hWI2dPFxJMWEezygU/Nt0.1CdCvoy/VoSXhyaNWWL176gOzYTKoeO',
+        email: 'nmt605@gmail.com',
+        phone: '0705542897',
+        amount: 5653556,
+        avatar: 'https://gravatar.com/avatar/01af23da56ae32f88cd54bf48294627e',
+        role: 'client',
+        deletedAt: null,
+        createdAt: '2022-09-12 20:32:31',
+        updatedAt: '2022-08-14 19:32:31'
+      },
+      {
+        username: 'nmt6344',
         password: '$2a$10$hWI2dPFxJMWEezygU/Nt0.1CdCvoy/VoSXhyaNWWL176gOzYTKoeO',
         email: 'nmt605@gmail.com',
         phone: '0705542897',
@@ -258,7 +294,7 @@ module.exports = {
         deletedAt: null,
         createdAt: '2022-09-12 19:32:31',
         updatedAt: '2022-08-14 19:32:31'
-      }
+      },
     ], {});
 
   },

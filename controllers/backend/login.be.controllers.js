@@ -20,7 +20,7 @@ const login = async (req, res) => {
             const isAuth = bcrypt.compareSync(password, userFound.password)
             if (isAuth) {
                 const token = jwt.sign({ id: userFound.id }, "manhtien345", {
-                    expiresIn: 60 * 60
+                    expiresIn: 1 * 60
                 })
                 res.status(200).send({ message: "Đăng nhập thành công", token })
             } else {
@@ -40,6 +40,7 @@ const loginPage = (req, res) => {
         {
             layout: false,
             title: 'Đăng Nhập - Adminitrator',
+            layout: 'mainLayouts/nothing.ejs',
             script: `<script src="/vendor/axios/dist/axios.min.js"></script>
 <script src='/public/js/backend/pages/login.be.js'></script>`,
         }

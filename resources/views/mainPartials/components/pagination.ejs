@@ -1,6 +1,5 @@
 <!-- chỉ hiện phân trang khi có tổng số trang lớn hơn 0 -->
-<% if(totalPage> 0) { %>
-    <% let pagesize = 5 %>
+<% if(totalPage > 0) { %>   
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
             <!-- FIRST ITEM -->
@@ -12,7 +11,7 @@
             <% } else { %>
                 <!-- Nếu thông số http://localhost:3000?page=2/ từ 2 trở lên thì First sẽ bỏ disabled -->
                 <li class="page-item">
-                    <a class="page-link" href="?page=1">First</a>
+                    <a class="page-link" href="?page=1&pagesize=<%=pagesize%>">First</a>
                 </li>
             <% } %>
 
@@ -60,7 +59,7 @@
                 <!-- Ngược lại, thì Last là trang cuối cùng totalPage ở đây là 6 đồng nghĩa với Last là trang số 6 -->
                 <li class="page-item">
                     <a class="page-link"
-                        href="?page=<%= totalPage %>/">
+                        href="?page=<%= totalPage %>&pagesize=<%=pagesize%>">
                         Last
                     </a>
                 </li>

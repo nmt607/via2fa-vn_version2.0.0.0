@@ -34,7 +34,8 @@ const login = async (req, res) => {
 }
 
 
-const loginPage = (req, res) => {
+const loginPage = (req, res) => { 
+
     res.render('frontend/login.fe.ejs',
         {
             layout: false,

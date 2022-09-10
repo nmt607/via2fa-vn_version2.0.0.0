@@ -2,6 +2,7 @@ const express = require('express');
 
 // controllers
 const { loginPage, login } = require('../../controllers/backend/login.be.controllers');
+const {  authenticateLoginBe } = require('../../middlewares/auth/authenticate');
 
 // middlewares
 const { checkEmpty } = require('../../middlewares/validation/checkEmpty');
@@ -9,7 +10,7 @@ const { checkEmpty } = require('../../middlewares/validation/checkEmpty');
 const loginBeRouter = express.Router();
 
 // Get Page
-loginBeRouter.get("/login", loginPage)
+loginBeRouter.get("/login", authenticateLoginBe, loginPage)
 
 
 

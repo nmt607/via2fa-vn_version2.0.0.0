@@ -20,7 +20,6 @@ const userManagementRuoter = express.Router();
 // Get Page
 userManagementRuoter.get("/user-management", authenticateBe, authorizeLoginBe, pagePaginationValidate, getUserManagermentPage)
 
-
 // API
 userManagementRuoter.post("/api/get-user-by-id", authenticateBe, authorizeLoginBe, getUserById)
 userManagementRuoter.put("/api/edit-user", authenticateBe, authorizeLoginBe,

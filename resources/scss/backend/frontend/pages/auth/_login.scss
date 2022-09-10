@@ -13,12 +13,5 @@
         .success-message {
             display: none;
         }
-        #loginForm {
-            label.label-username,label.label-password {
-                display: block;
-                text-align: left;
-                font-weight: $font-weight-semi-bold;
-            }
-        }
     }
 }

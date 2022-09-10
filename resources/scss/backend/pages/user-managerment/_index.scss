@@ -1,13 +1,25 @@
 .user-management {
+    .form-select-pagesize {
+        font-size: 14px;
+        &--select {
+            font-size: 14px;
+        }
+    }
     .form-search {
-        .input-group {
-            width: 415px;
-            max-width: 415px;
+        .input-select-datepicker{
+            font-size: 14px;    
+            line-height: 1.858;     
+        }
+        .filter-user-option{
+            width: 320px;
+            max-width: 320px;
             margin-left: auto;
-            .form-select {
+            .select-user-option {
+                font-size: 14px;
                 flex-grow: 2;
             }
-            .form-control {
+            .input-user-option {
+                font-size: 14px;
                 flex-grow: 5;
             }
         }

@@ -107,4 +107,14 @@ $(document).ready(() => {
         }
     })
 
+    // HANDLE PAGE SIZE
+    $('#pageSize').on('change', function (e) {
+        $(this).submit()
+    })
+
+    // RESET SEARCH FORM
+    $('.btn-reset-form-search').on('click', function () {       
+        document.location.href = '/admin/user-management'
+    })
+
 })

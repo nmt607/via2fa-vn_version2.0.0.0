@@ -1,0 +1,191 @@
+//====== SEPARATE LINE  ======
+@mixin separateLine($width, $height, $bg-color, $top, $right) {
+    content: "";
+    display: block;
+    background-color: $bg-color;
+    width: $width;
+    height: $height;
+    position: absolute;
+    right: $right;
+    top: $top;
+    transform: translateY(-50%);
+}
+
+//====== BRIDGE-HOVER ======
+@mixin bridgeHover($height-bridge, $width-bridge, $top-bridge, $right-bridge, $left-bridge) {
+    content: "";
+    display: block;
+    position: absolute;
+    height: $height-bridge;
+    width: $width-bridge;
+    top: $top-bridge;
+    right: $right-bridge;
+    left: $left-bridge;
+}
+//====== ARROW ======
+@mixin arrowUp($top, $right, $color) {
+    content: "";
+    border: 20px solid;
+    border-color: transparent transparent $color transparent;
+    position: absolute;
+    top: $top;
+    right: $right;
+}
+
+@mixin arrowDown($top, $right, $color) {
+    content: "";
+    border: 20px solid;
+    border-color: $color transparent transparent transparent;
+    position: absolute;
+    top: $top;
+    right: $right;
+}
+
+//====== BLUR ======
+@mixin blur($top, $width, $bgc,$breakPoint) {
+    @include media-breakpoint-down($breakPoint) {
+        position: relative;
+        &::after {
+            background: linear-gradient(to right, rgba(255 255 255/0), $bgc);
+            content: "";
+            height: 100%;
+            position: absolute;
+            top: $top;
+            right: 0;
+            width: $width;
+        }
+    }
+}
+
+//====== TEXT STYLE ======
+@mixin textStyle($color, $fs, $fw) {
+    color: $color;
+    font-size: $fs;
+    font-weight: $fw;
+}
+
+//====== BUTTON ======
+@mixin button($border, $bg, $color, $padding, $border-hover, $bg-hover, $color-hover) {
+    border: 1px solid $border;
+    background-color: $bg;
+    color: $color;
+    padding: $padding;
+    cursor: pointer;
+    &:hover {
+        border-color: $border-hover;
+        background-color: $bg-hover;
+        color: $color-hover;
+    }
+}
+
+
+
+//====== SCROLL ======
+@mixin scroll-style() {
+    scrollbar-width: thin;
+    &::-webkit-scrollbar {
+        width: $scrollbar-width;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: $color-primary;
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: $color-secondary;
+    }
+}
+
+// // ====== RESPONSIVE ======
+// // BETWEEN-SIZES
+// @mixin reponsBetween($fromScreen, $toScreen) {
+//     @if map-has-key($map: $grid-breakpoints, $key: $fromScreen) and
+//         map-has-key($map: $grid-breakpoints, $key: $toScreen)
+//     {
+//         $minValue: map-get(
+//             $map: $grid-breakpoints,
+//             $key: $fromScreen,
+//         );
+//         $maxValue: map-get(
+//             $map: $grid-breakpoints,
+//             $key: $toScreen,
+//         );
+//         $maxValue: (($maxValue - 0.02)/16) * 1em/1px;
+//         @media screen and (min-width: ($minValue)) and (max-width: ($maxValue)) {
+//             @content;
+//         }
+//     } @else {
+//         @warn "#{$fromScreen} or #{$toScreen} isn't exist in breakpoints";
+//     }
+// }
+// // MIN-WIDHT
+// @mixin responMoreThan($screen) {
+//     @if map-has-key($map: $grid-breakpoints, $key: $screen) {
+//         $value: map-get(
+//             $map: $grid-breakpoints,
+//             $key: $screen,
+//         );
+//         $value: ($value/16) * 1em/1px;
+//         @media screen and (min-width: ($value)) {
+//             @content;
+//         }
+//     } @else {
+//         @warn "#{$screen} isn't exist in breakpoints";
+//     }
+// }
+// // MAX-WIDHT
+// @mixin responLessThan($screen) {
+//     @if map-has-key($map: $grid-breakpoints, $key: $screen) {
+//         $value: map-get(
+//             $map: $grid-breakpoints,
+//             $key: $screen,
+//         );
+//         $value: (($value - 0.02)/16) * 1em/1px;
+//         @media screen and (max-width: ($value)) {
+//             @content;
+//         }
+//     } @else {
+//         @warn "#{$screen} isn't exist in breakpoints";
+//     }
+// }
+
+// // ====== RESPONSIVE EX ======
+// // BETWEEN-SIZES RESPONSIVE
+// @include reponsBetween("ms", "lg") {
+// }
+
+// // MIN-WIDTH RESPONSIVE
+// @include responMoreThan("ms") {
+// }
+// @include responMoreThan("sm") {
+// }
+// @include responMoreThan("md") {
+// }
+// @include responMoreThan("lg") {
+// }
+// @include responMoreThan("ml") {
+// }
+// @include responMoreThan("xl") {
+// }
+
+// // MAX-WIDTH RESPONSIVE
+// @include responLessThan("xl") {
+// }
+// @include responLessThan("ml") {
+// }
+// @include responLessThan("lg") {
+// }
+// @include responLessThan("md") {
+// }
+// @include responLessThan("sm") {
+// }
+// @include responLessThan("ms") {
+// }

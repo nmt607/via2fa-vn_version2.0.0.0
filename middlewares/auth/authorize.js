@@ -1,22 +1,25 @@
 
-const { User } = require('../../models')
-
-const authorizeLoginBe = async (req, res, next) => { 
+const authorizeLoginBe = async (req, res, next) => {
     const roleArray = process.env.ROLEADMIN.split(',')
-    const { id } = req
+    const { userFound } = req
     try {
-        const userFound = await User.findOne({
-            where: {
-                id,
+       
+        if (userFound) {
+            if (roleArray.findIndex(role => role === userFound.role) > -1) {
+                next()
+            } else {
+                res.redirect('/admin/login')
             }
-        })
-        if (roleArray.findIndex(role => role === userFound.role) > -1) {
-            next()
         } else {
             res.redirect('/admin/login')
         }
+
     } catch (error) {
-        res.status(500).send({ message: "Lỗi ngoại lệ", error })
+        res.status(500).render('errors/500.ejs', {
+            title: 'Có lỗi sảy ra',
+            error: error.message,
+            script: false
+        })
     }
 }
 

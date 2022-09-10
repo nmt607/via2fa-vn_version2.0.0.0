@@ -1,25 +1,73 @@
-<div class="app user-management">
+<div class="user-management">
     <h1 class="text-center mb-4">Quản lý người dùng</h1>
     <div class="user-management-option d-flex align-items-center mb-3">
         <div class="form-select-pagesize d-flex align-items-center ">
             <span class="me-1">Show</span>
-            <select class="form-select form-select-sm" aria-label="Default select example">
-                <option selected>25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-            </select>
+            <form action="/admin/user-management" method="GET" id="pageSize">
+                <input type="number" value="1" name="page" class="d-none">
+                <select class="form-select form-control  form-select-pagesize--select" id="pageSize" name="pagesize">
+                    <%if(pagesize==5){%>
+                        <option selected value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <%}else if (pagesize==10){%>
+                            <option value="5">5</option>
+                            <option selected value="10">10</option>
+                            <option value="15">15</option>
+                            <%}else{%>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option selected value="15">15</option>
+                                <%}%>
+                </select>
+                <input type="date" value="<%=date%>" name="date" class="d-none">
+                <input type="text" value="<%=value%>" name="value" class="d-none">
+                <input type="text" value="<%=key%>" name="key" class="d-none">
+
+
+            </form>
             <span class="ms-1"> entries</span>
         </div>
 
         <form class="d-flex form-search ms-auto">
-            <div class="input-group">
-                <input type="text" class="form-control" name="data">
-                <select class="form-select" name="field">
-                    <option value="null" selected disabled>Chọn Dữ Liệu</option>
-                    <option value="username">Username</option>
-                    <option value="email">Email</option>
-                    <option value="phone">Phone</option>
-                </select>
+            <div class="md-outline input-with-post-icon datepicker me-2">
+                <% if(date){%>
+                    <input placeholder="Select date" type="date" id="filterDate"
+                        class="form-control input-select-datepicker" name="date" value="<%=date%>">
+                    <%}else{%>
+                        <input placeholder="Select date" type="date" id="filterDate"
+                            class="form-control input-select-datepicker" name="date">
+                        <%}%>
+
+            </div>
+            <div class="d-flex input-group filter-user-option me-2">
+                <%if (value){%>
+                    <input type="text" class="form-control input-user-option" name="value" value="<%=value%>" />
+                    <%}else{%>
+                        <input type="text" class="form-control input-user-option" name="value" />
+                        <%}%>
+                            <select class="form-select form-control select-user-option" name="key"
+                                aria-label="Default select example">
+                                <%if (key=='email' ){%>
+                                    <option value="username" >Username</option>
+                                    <option value="id">ID</option>
+                                    <option value="email" selected>Email</option>
+                                    <%}else if(key=='id' ){%>
+                                        <option value="username">Username</option>
+                                        <option value="id" selected>ID</option>
+                                        <option value="email">Email</option>
+                                        <%}else{%>
+                                            <option value="username" selected>Username</option>
+                                            <option value="id">ID</option>
+                                            <option value="email" >Email</option>
+                                            <%}%>
+
+
+                            </select>
+            </div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                <button type="button" class="btn btn-danger btn-reset-form-search"><i class="fa fa-backspace"></i></button>
             </div>
         </form>
     </div>
@@ -27,7 +75,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">No</th>
+                <th scope="col">ID</th>
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
@@ -38,37 +86,52 @@
             </tr>
         </thead>
         <tbody class="userList-tbody">
-            <% for(let i=0;i < userList.length;i++){%>
-                <tr>
-                    <td scope="row">
-                        <%= i+1 %>
-                    </td>
-                    <td>
-                        <%= userList[i].username %>
-                    </td>
-                    <td>
-                        <%= userList[i].email %>
-                    </td>
-                    <td>
-                        <%= userList[i].phone %>
-                    </td>
-                    <td>
-                        <%= userList[i].amount.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1," ) %> VNĐ
-                    </td>
-                    <td>
-                        <%= dateFormat('dd-MM-yyyy', new Date(userList[i].createdAt))%>
-                    </td>
+            <%if(totalPage){%>
+                <% for(let i=0;i < userList.length;i++){%>
+                    <tr>
+                        <td scope="row">
+                            <%= userList[i].id %>
+                        </td>
+                        <td>
+                            <%= userList[i].username %>
+                        </td>
+                        <td>
+                            <%= userList[i].email %>
+                        </td>
+                        <td>
+                            <%= userList[i].phone %>
+                        </td>
+                        <td>
+                            <%= userList[i].amount.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1," ) %> VNĐ
+                        </td>
+                        <td>
+                            <%= dateFormat('dd-MM-yyyy hh:mm:ss', new Date(userList[i].createdAt))%> 
+                        </td>
 
-                    <td>
-                        <button class="btn btn-primary btn-modal-edit" data-bs-toggle="modal"
-                            data-bs-target="#modalUserEdit" data-id="<%=userList[i].id%>" data-method="POST"
-                            data-action="/admin/api/get-user-by-id">Sửa</button>
-                        <button class=" btn btn-danger btn-modal-delete" data-bs-toggle="modal" data-method="POST"
-                            data-action="/admin/api/get-user-by-id" data-id="<%=userList[i].id%>"
-                            data-bs-target="#modalUserDelete">Xóa</button>
-                    </td>
-                </tr>
-                <%}%>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-primary btn-sm btn-modal-edit"
+                                    data-mdb-toggle="modal" data-mdb-target="#modalUserEdit"
+                                    data-id="<%=userList[i].id%>" data-method="POST"
+                                    data-action="/admin/api/get-user-by-id">
+                                    Sửa
+                                </button>
+                                <button type="button" class=" btn btn-danger btn-sm btn-modal-delete"
+                                    data-mdb-toggle="modal" data-method="POST" data-action="/admin/api/get-user-by-id"
+                                    data-id="<%=userList[i].id%>" data-mdb-target="#modalUserDelete">
+                                    Xóa
+                                </button>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <%}%>
+                        <% }else{%>
+                            <tr>
+                                <td colspan="7" class="text-center">Không có người dùng</td>
+                            </tr>
+                            <%}%>
+
         </tbody>
     </table>
     <!-- pagination -->
@@ -83,7 +146,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title model-title-edit-user" id="modalLabelEditUser">Sửa thông tin - nmt607
                         </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form method="PUT" action="/admin/api/edit-user" id="modalFormEditUser" name="editUserForm">
@@ -137,7 +200,7 @@
                             </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-dark" data-mdb-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success">Lưu thay đổi</button>
                     </div>
                     </form>
@@ -148,13 +211,13 @@
 
         <!-- Modal Delete User -->
         <!-- Modal -->
-        <div class="modal fade" id="modalUserDelete" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="modalUserDelete" tabindex="-1" aria-labelledby="modalLabelUserDelete"
             aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Xoá người dùng</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="modalLabelUserDelete">Xoá người dùng</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
                     </div>
 
                     <div class="modal-body">
@@ -167,7 +230,7 @@
                         <h4 class="modal-body-delete-content">Bấm xác nhận để xóa nmt607</h4>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-dark" data-mdb-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-danger execute-delete" data-method="DELETE"
                             data-action="/admin/api/soft-delete-user">Xác nhận</button>
                     </div>

@@ -8,7 +8,9 @@
   <title>
     <%=title%>
   </title>
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;900&display=swap">
+  <link rel="stylesheet" href="/vendor/mdb-ui-kit/css/mdb.min.css">
   <link rel="stylesheet" href="/public/css/frontend/main.css">
 </head>
 
@@ -16,7 +18,7 @@
   <div class="app">
     <%- include ("../mainPartials/frontend/header.fe.ejs")%>
 
-      <div class="container text-center">
+      <div class="container">
         <%-body%>
       </div>
 
@@ -26,7 +28,7 @@
 
   <script src="/vendor/jquery/dist/jquery.min.js"></script>
   <script src="/vendor/@popperjs/core/dist/umd/popper.min.js"></script>
-  <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/vendor/mdb-ui-kit/js/mdb.min.js"></script>
   <%-script%>
 </body>
 
